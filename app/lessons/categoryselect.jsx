@@ -34,10 +34,11 @@ function CategorySelect({ categories }) {
 
   return (
     <Dropdown>
-      <DropdownTrigger>
+      <DropdownTrigger className="my-2 sm:my-0">
         <Button
           variant="shadow"
-          className="capitalize bg-pink-500 text-white"
+          // className="capitalize bg-pink-500 text-white"
+          color="primary"
           startContent={<SlidersHorizontal />}
           isIconOnly
         ></Button>
@@ -45,7 +46,7 @@ function CategorySelect({ categories }) {
       <DropdownMenu
         aria-label="Multiple selection example"
         variant="solid"
-        color="danger"
+        color="primary"
         closeOnSelect={false}
         // disallowEmptySelection
         selectionMode="single"

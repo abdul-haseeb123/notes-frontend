@@ -1,5 +1,5 @@
 import NextImage from "next/image";
-import ScienceBroS from "../public/Science-bro simp.svg";
+import ScienceBroS from "../public/chemistry-lab-animate.svg";
 import { DisplayBlogs } from "./components/BlogCard";
 
 async function getFirstSix() {
@@ -23,7 +23,7 @@ function TypographyH1({ content }) {
 
 function TypographyH2({ content }) {
   return (
-    <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 text-foreground">
+    <h2 className="scroll-m-20 pb-2 sm:px-0 px-2 text-2xl sm:text-3xl font-semibold tracking-tight first:mt-0 text-foreground">
       {content}
     </h2>
   );
@@ -50,10 +50,10 @@ export default async function Home() {
           </TypographyH3>
         </div>
         <div className="">
-          <NextImage src={ScienceBroS} />
+          <NextImage src={ScienceBroS} priority={100} />
         </div>
       </section>
-      <section className="flex flex-col gap-4 items-center py-7 after:content-[''] after:bg-pink-200  after:absolute relative after:inset-0 after:skew-y-3 after:-z-10">
+      <section className="flex flex-col gap-4 items-center py-7 after:content-[''] after:bg-pink-200   after:absolute relative after:inset-0 after:skew-y-3 after:-z-10 ">
         <TypographyH2 content={"Explore some Latest Blog Posts"} />
         <div
           id="blogs"

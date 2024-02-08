@@ -36,7 +36,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "blob-haikei": "url('/blob-haikei.svg')",
+        "blob-haikei": "url('/blob-haikei-2.svg')",
         "diagonal-background":
           "linear-gradient(90deg, rgba(219,39,119,1), rgba(236,72,153,1), rgba(244,114,182,1))",
       },
@@ -52,6 +52,7 @@ module.exports = {
               foreground: "#FFFFFF",
               DEFAULT: "#ec4899",
             },
+            primary: "#0284c7",
           },
         },
         light: {
@@ -59,6 +60,10 @@ module.exports = {
             danger: {
               foreground: "#FFFFFF",
               DEFAULT: "#ec4899",
+            },
+            primary: {
+              foreground: "#FFFFFF",
+              DEFAULT: "#0284c7",
             },
           },
         },

@@ -105,10 +105,10 @@ export function DisplayBlogs({ blogs, className = "" }) {
       </div>
       <Button
         onClick={handleNext}
-        isDisabled={currIndex == blogs.length}
         className="bg-pink-500"
         isIconOnly
         radius="full"
+        isDisabled={currIndex + blogsToShow >= blogs.length}
       >
         <ArrowRight color="#ffffff" />
       </Button>

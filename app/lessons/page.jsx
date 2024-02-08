@@ -10,16 +10,17 @@ import {
 import NextImage from "next/image";
 import CategorySelect from "./categoryselect";
 import NextLink from "next/link";
+import MyPagination from "./pagination";
 
 export const metadata = {
   title: "Lessons",
 };
 
-async function getLessons(category) {
+async function getLessons(category, limit) {
   if (category != "") {
     const res = await fetch(
       process.env.BACKEND_URL +
-        `/api/lessons?filters[categories][name][$eqi]=${category}&populate=*&fields[0]=title&fields[1]=slug&fields[2]=description`,
+        `/api/lessons?filters[categories][name][$eqi]=${category}&populate=*&fields[0]=title&fields[1]=slug&fields[2]=description&pagination[limit]=${limit}`,
       {
         cache: "no-store",
       }
@@ -28,7 +29,8 @@ async function getLessons(category) {
   } else {
     const res = await fetch(
       process.env.BACKEND_URL +
-        "/api/lessons?populate=*&fields[0]=title&fields[1]=slug&fields[2]=description",
+        "/api/lessons?populate=*&fields[0]=title&fields[1]=slug&fields[2]=description&pagination[limit]=" +
+        limit,
       {
         cache: "no-store",
       }
@@ -74,10 +76,13 @@ function CardComponent({ lesson }) {
       <CardFooter className="gap-2 flex flex-row flex-wrap pt-0">
         {lesson.attributes.categories.data.map((category) => (
           <Chip
-            className="bg-pink-600 text-white "
             key={category.attributes.name}
-            color="primary"
             size="sm"
+            variant="solid"
+            color="primary"
+            style={{
+              color: "white",
+            }}
           >
             # {category.attributes.name}
           </Chip>
@@ -89,7 +94,8 @@ function CardComponent({ lesson }) {
 
 export default async function lessons({ searchParams }) {
   const category = searchParams["category"] ?? "";
-  const data = await getLessons(category);
+  const limit = searchParams["limit"] || 2;
+  const data = await getLessons(category, limit);
   const lessons = data.data;
 
   const categories = await getCategories();
@@ -104,6 +110,7 @@ export default async function lessons({ searchParams }) {
           <CardComponent lesson={lesson} key={lesson.attributes.slug} />
         ))}
       </section>
+      <MyPagination total={data.meta.pagination.total} />
     </main>
   );
 }

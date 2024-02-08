@@ -9,12 +9,14 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Link,
+  Image,
 } from "@nextui-org/react";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { cn } from "@nextui-org/react";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { Microscope } from "lucide-react";
 
 const menuItems = [
   {
@@ -43,14 +45,7 @@ export default function MyNavbar() {
     <Navbar shouldHideOnScroll onMenuOpenChange={setIsMenuOpen} isBordered>
       <NavbarContent justify="center">
         <NavbarBrand as={NextLink} href={"/"}>
-          {/* <Image
-            src={"/college-chemistry.png"}
-            width={80}
-            height={80}
-            alt="College Chemistry"
-            className="w-full object-cover"
-            as={NextImage}
-          /> */}
+          <Microscope color="#38bdf8" size={40} />
           <p className="text-pink-500 font-bold text-2xl">College Chemistry</p>
         </NavbarBrand>
       </NavbarContent>
@@ -89,6 +84,7 @@ export default function MyNavbar() {
         <ThemeSwitcher />
       </NavbarContent>
       <NavbarContent className="flex sm:hidden" justify="end">
+        <ThemeSwitcher />
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
