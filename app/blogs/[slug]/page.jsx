@@ -1,8 +1,7 @@
-import Markdown from "react-markdown";
-
 async function getBlog(slug) {
   const res = await fetch(
-    process.env.BACKEND_URL + `/api/blogs/?populate=cover&slug=${slug}`,
+    process.env.BACKEND_URL +
+      `/api/blogs/?populate=cover&filters[slug][$eq]=${slug}`,
     {
       cache: "no-store",
     }
@@ -39,8 +38,9 @@ export default async function page({ params }) {
   const data = await getBlog(params.slug);
   const blog = data.data[0];
   return (
-    <main className="container p-4 prose dark:prose-invert mx-auto prose-a:text-pink-500 prose-headings:text-pink-400 prose-strong:text-pink-400 prose-lg hover:prose-headings:text-pink-500 hover:prose-a:text-pink-300 prose-h1:text-pink-400">
-      <Markdown>{blog.attributes.content}</Markdown>
-    </main>
+    <main
+      className="container p-4 prose dark:prose-invert mx-auto prose-a:text-pink-500 prose-headings:text-pink-400 prose-strong:text-pink-400 prose-lg hover:prose-headings:text-pink-500 hover:prose-a:text-pink-300 prose-h1:text-pink-400"
+      dangerouslySetInnerHTML={{ __html: blog.attributes.content }}
+    ></main>
   );
 }
