@@ -3,13 +3,10 @@ import NextLink from "next/link";
 import NextImage from "next/image";
 import MyPagination from "./pagination";
 
-async function getBlogs(limit) {
+async function getBlogs() {
   const res = await fetch(
     process.env.BACKEND_URL +
-      `/api/blogs/?populate[0]=cover&fields[0]=title&fields[1]=slug&fields[2]=description&pagination[limit]=${limit}`,
-    {
-      cache: "no-store",
-    }
+      `/api/blogs/?populate[0]=cover&fields[0]=title&fields[1]=slug&fields[2]=description`
   );
   return res.json();
 }
@@ -35,14 +32,11 @@ function BlogCard({ blog }) {
       href={"/blogs/" + blog.attributes.slug}
     >
       <CardHeader className="p-0">
-        <Image
-          src={
-            process.env.BACKEND_URL + blog.attributes.cover.data.attributes.url
-          }
+        <img
+          src={blog.attributes.cover.data.attributes.url}
           // className="w-[320px] h-[210px]  object-cover rounded-none "
           className="w-full object-cover rounded-none"
           alt={blog.attributes.title}
-          as={NextImage}
           width={400}
           height={400}
         />
@@ -59,9 +53,9 @@ function BlogCard({ blog }) {
   );
 }
 
-export default async function blogs({ searchParams }) {
-  const starting_limit = searchParams["limit"] || 2;
-  const data = await getBlogs(starting_limit);
+export default async function blogs() {
+  // const starting_limit = searchParams["limit"] || 2;
+  const data = await getBlogs();
 
   return (
     <main className="container p-3 grid place-content-center min-h-screen">

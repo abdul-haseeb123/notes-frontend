@@ -6,10 +6,7 @@ import { Image } from "@nextui-org/react";
 async function getFirstSix() {
   const res = await fetch(
     process.env.BACKEND_URL +
-      "/api/blogs/?populate[0]=cover&fields[0]=title&fields[1]=slug&pagination[limit]=6",
-    {
-      cache: "no-store",
-    }
+      "/api/blogs/?populate[0]=cover&fields[0]=title&fields[1]=slug&pagination[limit]=6"
   );
   return res.json();
 }

@@ -3,9 +3,7 @@ import { Link } from "@nextui-org/react";
 import NextLink from "next/link";
 
 async function getMcqs() {
-  const res = await fetch(process.env.BACKEND_URL + "/api/mcqs", {
-    cache: "no-store",
-  });
+  const res = await fetch(process.env.BACKEND_URL + "/api/mcqs");
   return res.json();
 }
 

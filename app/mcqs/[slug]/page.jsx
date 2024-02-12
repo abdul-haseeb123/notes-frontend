@@ -1,12 +1,18 @@
 import React from "react";
 import McqCard from "./mcqcard";
 
+export async function generateStaticParams() {
+  const mcqs = await fetch(process.env.BACKEND_URL + "/api/mcqs").then((res) =>
+    res.json()
+  );
+  return mcqs.data.map((mcq) => ({
+    slug: mcq.attributes.slug,
+  }));
+}
+
 async function getMcq(slug) {
   const res = await fetch(
-    process.env.BACKEND_URL + `/api/mcqs?filters[slug][$eq]=${slug}&populate=*`,
-    {
-      cache: "no-store",
-    }
+    process.env.BACKEND_URL + `/api/mcqs?filters[slug][$eq]=${slug}&populate=*`
   );
   return res.json();
 }
