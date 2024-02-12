@@ -3,10 +3,13 @@ import NextLink from "next/link";
 import NextImage from "next/image";
 import MyPagination from "./pagination";
 
-async function getBlogs() {
+async function getBlogs(limit) {
   const res = await fetch(
     process.env.BACKEND_URL +
-      `/api/blogs/?populate[0]=cover&fields[0]=title&fields[1]=slug&fields[2]=description`
+      `/api/blogs/?populate[0]=cover&fields[0]=title&fields[1]=slug&fields[2]=description?pagination[limit]=${limit}`,
+    {
+      cache: "no-store",
+    }
   );
   return res.json();
 }
@@ -55,8 +58,8 @@ function BlogCard({ blog }) {
 }
 
 export default async function blogs() {
-  // const starting_limit = searchParams["limit"] || 2;
-  const data = await getBlogs();
+  const starting_limit = searchParams["limit"] || 2;
+  const data = await getBlogs(starting_limit);
 
   return (
     <main className="container p-3 grid place-content-center min-h-screen">

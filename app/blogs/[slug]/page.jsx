@@ -1,5 +1,3 @@
-import Markdown from "react-markdown";
-
 async function getBlog(slug) {
   const res = await fetch(
     process.env.BACKEND_URL + `/api/blogs/?populate=cover&slug=${slug}`,
