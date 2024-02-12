@@ -43,7 +43,12 @@ function Footer2() {
             href="/"
             className="flex items-center mb-4 sm:mb-0  space-x-3 rtl:space-x-reverse"
           >
-            <img src={"/2.png"} className="h-24" width={100} height={100} />
+            <NextImage
+              src={"/2.png"}
+              className="h-24"
+              width={100}
+              height={100}
+            />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-white">
               College Chemistry
             </span>
