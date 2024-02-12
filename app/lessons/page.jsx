@@ -16,27 +16,15 @@ export const metadata = {
   title: "Lessons",
 };
 
-async function getLessons(category, limit) {
-  if (category != "") {
-    const res = await fetch(
-      process.env.BACKEND_URL +
-        `/api/lessons?filters[categories][name][$eqi]=${category}&populate=*&fields[0]=title&fields[1]=slug&fields[2]=description&pagination[limit]=${limit}`,
-      {
-        cache: "no-store",
-      }
-    );
-    return res.json();
-  } else {
-    const res = await fetch(
-      process.env.BACKEND_URL +
-        "/api/lessons?populate=*&fields[0]=title&fields[1]=slug&fields[2]=description&pagination[limit]=" +
-        limit,
-      {
-        cache: "no-store",
-      }
-    );
-    return res.json();
-  }
+async function getLessons() {
+  const res = await fetch(
+    process.env.BACKEND_URL +
+      `/api/lessons?populate=*&fields[0]=title&fields[1]=slug&fields[2]=description`,
+    {
+      cache: "no-store",
+    }
+  );
+  return res.json();
 }
 
 async function getCategories() {
@@ -92,17 +80,17 @@ function CardComponent({ lesson }) {
   );
 }
 
-export default async function lessons({ searchParams }) {
-  const category = searchParams["category"] ?? "";
-  const limit = searchParams["limit"] || 2;
-  const data = await getLessons(category, limit);
+export default async function lessons() {
+  // const category = searchParams["category"] ?? "";
+  // const limit = searchParams["limit"] || 2;
+  const data = await getLessons();
   const lessons = data.data;
 
-  const categories = await getCategories();
+  // const categories = await getCategories();
   return (
     <main className="container mx-auto grid p-5 justify-center min-h-[90vh]">
       <div className="w-fit md:ml-auto md:mr-0 ml-auto mr-auto">
-        <CategorySelect categories={categories.data} />
+        {/* <CategorySelect categories={categories.data} /> */}
       </div>
 
       <section className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 place-content-center">
