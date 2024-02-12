@@ -32,14 +32,11 @@ function BlogCard({ blog }) {
       href={"/blogs/" + blog.attributes.slug}
     >
       <CardHeader className="p-0">
-        <Image
-          src={
-            process.env.BACKEND_URL + blog.attributes.cover.data.attributes.url
-          }
+        <img
+          src={blog.attributes.cover.data.attributes.url}
           // className="w-[320px] h-[210px]  object-cover rounded-none "
           className="w-full object-cover rounded-none"
           alt={blog.attributes.title}
-          as={NextImage}
           width={400}
           height={400}
         />

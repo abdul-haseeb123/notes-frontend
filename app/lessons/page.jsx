@@ -19,10 +19,7 @@ export const metadata = {
 async function getLessons() {
   const res = await fetch(
     process.env.BACKEND_URL +
-      `/api/lessons?populate=*&fields[0]=title&fields[1]=slug&fields[2]=description`,
-    {
-      cache: "no-store",
-    }
+      `/api/lessons?populate=*&fields[0]=title&fields[1]=slug&fields[2]=description`
   );
   return res.json();
 }
@@ -41,12 +38,9 @@ function CardComponent({ lesson }) {
       href={"/lessons/" + lesson.attributes.slug}
     >
       <CardHeader className="p-0">
-        <Image
-          src={
-            process.env.BACKEND_URL +
-            lesson.attributes.cover.data.attributes.url
-          }
-          as={NextImage}
+        <img
+          src={lesson.attributes.cover.data.attributes.url}
+          // as={NextImage}
           alt={lesson.attributes.title}
           className="w-[300px] h-[220px] object-cover rounded-none"
           width={lesson.attributes.cover.data.attributes.width}
@@ -98,7 +92,7 @@ export default async function lessons() {
           <CardComponent lesson={lesson} key={lesson.attributes.slug} />
         ))}
       </section>
-      <MyPagination total={data.meta.pagination.total} />
+      {/* <MyPagination total={data.meta.pagination.total} /> */}
     </main>
   );
 }
