@@ -6,26 +6,26 @@ import NextImage from "next/image";
 
 function Footer() {
   return (
-    <footer className=" border-t-large dark:border-zinc-700 border-zinc-300 mt-12 rounded-lg shadow-lg">
+    <footer className="bg-pink-50 dark:bg-orange-50 dark:border-t-medium dark:border-pink-400 mt-12">
       <div className="container mx-auto p-3 flex flex-wrap justify-evenly gap-2 relative items-center">
         <Image
-          src={"/2.png"}
-          width={360}
-          height={360}
+          src={"/college-chemistry.png"}
+          width={210}
+          height={210}
           alt="College Chemistry"
-          className="w-full md:w-[250px] md:h-[250px] lg:h-[350px] lg:w-[350px] object-cover"
+          className="w-full object-cover"
           as={NextImage}
         />
         <div className="flex flex-wrap gap-6 ">
-          <Link size="lg" href="/lessons" color="foreground">
+          <Link size="lg" href="/lessons" color="primary">
             Lessons
           </Link>
 
-          <Link size="lg" href="/blogs" color="foreground">
+          <Link size="lg" href="/blogs" color="primary">
             Blogs
           </Link>
 
-          <Link size="lg" href="/mcqs" color="foreground">
+          <Link size="lg" href="/mcqs" color="primary">
             MCQs
           </Link>
         </div>

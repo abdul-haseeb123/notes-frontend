@@ -26,16 +26,17 @@ function BlogCard({ blog }) {
   return (
     <Card
       className="bg-background/35 max-w-[330px] hover:cursor-pointer group "
-      radius="none"
+      radius="sm"
       shadow="sm"
       as={NextLink}
       href={"/blogs/" + blog.attributes.slug}
     >
-      <CardHeader className="p-0">
-        <img
-          src={blog.attributes.cover.data.attributes.url}
-          // className="w-[320px] h-[210px]  object-cover rounded-none "
-          className="w-full object-cover rounded-none"
+      <CardHeader className="">
+        <Image
+          src={
+            process.env.BACKEND_URL + blog.attributes.cover.data.attributes.url
+          }
+          className="w-[320px] h-[210px]  object-cover rounded-none "
           alt={blog.attributes.title}
           width={400}
           height={400}

@@ -45,21 +45,7 @@ async function page({ params }) {
   const lesson = data.data[0];
   return (
     <main className="container p-4 prose dark:prose-invert mx-auto prose-a:text-pink-500 prose-headings:text-pink-400 prose-strong:text-pink-400 prose-lg hover:prose-headings:text-pink-500 hover:prose-a:text-pink-300 prose-h1:text-pink-400 ">
-      {lesson.attributes.youtube_video && (
-        <div className="w-full">
-          <iframe
-            src={`https://www.youtube.com/embed/${lesson.attributes.youtube_video}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="aspect-video w-full"
-          ></iframe>
-        </div>
-      )}
-      <div
-        className="prose dark:prose-invert mt-9"
-        dangerouslySetInnerHTML={{ __html: lesson.attributes.content }}
-      ></div>
+      <Markdown>{lesson.attributes.content}</Markdown>
     </main>
   );
 }
